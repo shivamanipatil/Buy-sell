@@ -11,21 +11,28 @@
 
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
+            <!-- login or logout in nav logic-->
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register'%}">Register</a></li>
+            {% endif %}
+            
         </ul>
     </nav>
     <div>
-        #Displaying any flash message 
+        <!--Displaying any flash message -->
         {% if messages %}
             {% for message in messages %}
                 {{ message }}
             {% endfor%}
         {% endif %}
-        #Main block of information
+         <!--Main info block -->
         {% block content%} {% endblock %}
     </div>
 </body>

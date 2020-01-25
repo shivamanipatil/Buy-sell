@@ -7,7 +7,7 @@ class Product(models.Model):
     age = models.FloatField()
     cost = models.FloatField()
     address = models.CharField(max_length=100)
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    seller = models.ForeignKey(User, on_delete=models.CASCADE) 
     
     def __str__(self):
         return self.name

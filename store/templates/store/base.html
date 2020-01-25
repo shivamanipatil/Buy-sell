@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'store/main.css' %}">
+</head>
+
+<body> 
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </nav>
+    <div>
+        #Displaying any flash message 
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor%}
+        {% endif %}
+        #Main block of information
+        {% block content%} {% endblock %}
+    </div>
+</body>

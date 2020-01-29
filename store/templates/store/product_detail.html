@@ -7,4 +7,17 @@
         <h3> cost : {{ object.cost}}</h3>
         <h3> address : {{ object.address}}</h3>
         <h3> email : {{ object.email}}</h3>
+        <div>
+                <h3> images </h3>
+                {% if object.image1 %}
+                        <img src={{ object.image1.url}} height=100>
+                {% endif %}
+                {% if object.image2 %}
+                        <img src={{ object.image2.url}} height=100>
+                {% endif %}
+        </div>
+        {% if object.seller == user %}
+                <a href="{% url 'product-update' object.id%}">Update ?</a>
+                <a href="{% url 'product-delete' object.id%}">Delete ?</a>
+        {% endif %}
 {% endblock content %}

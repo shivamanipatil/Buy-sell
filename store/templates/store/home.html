@@ -5,5 +5,13 @@
         <h2><a href="{% url 'product-detail' product.id %}"> Name : {{ product.name }} </a></h2>
         <h3> Seller : {{ product.seller}}</h3>
         <h3> Contact : {{ product.seller.email}}</h3>
+        <h3> Image1</h3>
+        {% if product.image1 %}
+            <img src={{ product.image1.url}} height=100/>
+        {% endif %}
+        {% if product.image2 %}
+            <img src={{ product.image2.url}} height=100/>
+        {% endif %}
+        
     {% endfor %}
 {% endblock content %}

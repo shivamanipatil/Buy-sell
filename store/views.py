@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from .models import Product
+from django.contrib import messages
+
+
 from django.views.generic import (
     ListView,
     DetailView,
@@ -61,3 +65,25 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
     
     
+        
+@login_required
+def BuyProduct(request, pk):
+    """ View and logic for buying a product"""
+    product = get_object_or_404(Product, pk=pk)
+    user = request.user
+    
+    #if seller tries to buy him own item
+    if user == product.seller:
+        return redirect('home')
+        
+    #wallet should contain more money than cost
+    if user.profile.wallet >= product.cost:
+        user.profile.wallet -= product.cost
+        product.seller.profile.wallet += product.cost
+        user.save()
+        product.seller.save()
+        product.delete()
+        messages.success(request, f'Item successfully bought!')
+    else:
+        messages.error(request, f'Item cannot be bought not enough money!')
+    return redirect('home')

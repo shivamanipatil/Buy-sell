@@ -6,7 +6,7 @@
         <h3> age : {{ object.age}}</h3>
         <h3> cost : {{ object.cost}}</h3>
         <h3> address : {{ object.address}}</h3>
-        <h3> email : {{ object.email}}</h3>
+        <h3> email : {{ object.seller.email}}</h3>
         <div>
                 <h3> images </h3>
                 {% if object.image1 %}
@@ -16,8 +16,13 @@
                         <img src={{ object.image2.url}} height=100>
                 {% endif %}
         </div>
+        <!--If seller is user he can update or delete the product-->
         {% if object.seller == user %}
                 <a href="{% url 'product-update' object.id%}">Update ?</a>
                 <a href="{% url 'product-delete' object.id%}">Delete ?</a>
+        {% endif %}
+        <!--If user isn't sellet then buy link should appear-->
+        {% if object.seller != user %}
+                <a href="{% url 'product-buy' object.id%}">Buy</a>
         {% endif %}
 {% endblock content %}

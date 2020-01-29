@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-
 def user_directory_path(instance, filename):
     return 'uploads/user_{0}/{1}'.format(instance.user.id, filename)
 
@@ -11,7 +10,7 @@ class Product(models.Model):
     name =  models.CharField(max_length=30)
     description = models.TextField()
     age = models.FloatField()
-    cost = models.FloatField()
+    cost = models.PositiveIntegerField()
     address = models.CharField(max_length=100)
     seller = models.ForeignKey(User, on_delete=models.CASCADE) 
     image1 = models.ImageField(upload_to='uploads/', null=True, blank=True)

@@ -11,17 +11,20 @@
 
 ### Create Super user:
 ```python manage.py createsuperuser```
-
+### To use admin site:
+  http://127.0.0.1:8000/profile/
 ### Implemented features:
 1) Login and logout feature for seller/buyer.
 2) Registering new users
 3) Images upload for products
 4) Functional wallet for user with default 5000 balance
+5) Admin can add any amount to any user's wallet.
+6) Transaction history  
+
 
 
 ### Non-Implemented features:
 
-1)Transaction history (model created but some minor error occured)
 
 ### References:
 1) [Corey scafer django series](https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p)

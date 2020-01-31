@@ -1,18 +1,27 @@
 .img-thumbnail {
-	height: 200px;
-	margin: 20px;
+    height: 200px;
+    margin: 20px;
 }
 
 .store-heading {
-	margin: 20px;
-	margin-left:0px;
+    margin: 20px;
+    margin-left: 0px;
 }
 
-.style1{
-	border-top: 2px solid #8c8b8b;
+.style1 {
+    border-top: 2px solid #8c8b8b;
 }
 
 .item-title {
-	padding-left: 20px;
-	
+    padding-left: 20px;
+}
+
+.query-items {
+	margin-left:10px;
+	margin-bottom: 5px;
+}
+
+.profile-heading {
+	float: left;
+	margin-right: 600px;
 }

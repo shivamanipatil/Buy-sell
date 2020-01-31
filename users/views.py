@@ -24,8 +24,8 @@ def register(request):
 @login_required
 def profile(request):
     
-    buyer = User.objects.get(username=request.user.username)
-    querySet = Transaction.objects.filter(buyer=buyer) 
+    reqUser = User.objects.get(username=request.user.username)
+    querySet = Transaction.objects.filter(buyer=reqUser) | Transaction.objects.filter(seller=reqUser)
     context = {
         'queries' : querySet
     }

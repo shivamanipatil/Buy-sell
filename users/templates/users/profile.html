@@ -1,9 +1,15 @@
 {% extends "store/base.html"%}
 {% block content %}
-    <h1>{{ user.username }}</h1>
-    <h1>Balance : Rs {{ user.profile.wallet}} </h1>
-    <h1>Transaction history: </h1>
+    <br>
+    <h2 class="profile-heading">Welcome, {{ user.username }}</h1>
+    <h2>Balance : Rs {{ user.profile.wallet}} </h1>
+    <br>
+    <br>
+    <br>
+    <h2>Your transaction history: </h1>
+    <hr>
     {% for query in queries %}
-        <h4>{{query.buyer}} bought {{query.item}} from {{query.seller}} for {{query.value}}</h4>
+        <h4 class="query-items">{{query.buyer}} bought {{query.item}} from {{query.seller}} for {{query.value}}</h4>
     {% endfor %}
+    
 {% endblock content %}

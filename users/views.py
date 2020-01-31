@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
+from .models import Transaction
+from django.contrib.auth.models import User
 
 def register(request):
     """ View for registering new users if request method is post get data and display for else display empty form"""
@@ -21,4 +23,10 @@ def register(request):
 # login_required decorator to ensure login is required to access profile
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    
+    buyer = User.objects.get(username=request.user.username)
+    querySet = Transaction.objects.filter(buyer=buyer) 
+    context = {
+        'queries' : querySet
+    }
+    return render(request, 'users/profile.html', context)

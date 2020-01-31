@@ -3,6 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Product
 from django.contrib import messages
+from users.models import Transaction
+from django.contrib.auth.models import User
 
 
 from django.views.generic import (
@@ -71,6 +73,8 @@ def BuyProduct(request, pk):
     """ View and logic for buying a product"""
     product = get_object_or_404(Product, pk=pk)
     user = request.user
+    buyerInstance = User.objects.get(username=request.user.username)
+    sellerInstance = User.objects.get(username=product.seller.username)
     
     #if seller tries to buy him own item
     if user == product.seller:
@@ -80,6 +84,7 @@ def BuyProduct(request, pk):
     if user.profile.wallet >= product.cost:
         user.profile.wallet -= product.cost
         product.seller.profile.wallet += product.cost
+        new_trans = Transaction.objects.create(item=product.name, buyer=buyerInstance, seller=sellerInstance, value=product.cost)
         user.save()
         product.seller.save()
         product.delete()

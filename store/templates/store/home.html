@@ -1,17 +1,18 @@
 {% extends "store/base.html" %}
 {% block content %}
-    <h1>Blog home </h1>
+    <h1 class="store-heading">Listed items </h1>
+    <hr class="style1">
     {% for product in products %}
-        <h2><a href="{% url 'product-detail' product.id %}"> Name : {{ product.name }} </a></h2>
-        <h3> Seller : {{ product.seller}}</h3>
-        <h3> Contact : {{ product.seller.email}}</h3>
-        <h3> Image1</h3>
+        <h2><a href="{% url 'product-detail' product.id %}">{{ product.name }} </a></h2>
+        <h4 class="item-title"> Seller : {{ product.seller}}</h4>
+        <h4 class="item-title"> Contact : {{ product.seller.email}}</h4>
+        <h4 class="item-title"> Cost : {{ product.cost}}</h4>
         {% if product.image1 %}
-            <img src={{ product.image1.url}} height=100/>
+            <img class="img-thumbnail" src={{ product.image1.url}} height=100/>
         {% endif %}
         {% if product.image2 %}
-            <img src={{ product.image2.url}} height=100/>
+            <img class="img-thumbnail" src={{ product.image2.url}} height=100/>
         {% endif %}
-        
+        <hr>
     {% endfor %}
 {% endblock content %}

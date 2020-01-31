@@ -1,6 +1,9 @@
 {% extends "store/base.html"%}
-{% load crispy_forms_tags%}
 {% block content %}
     <h1>{{ user.username }}</h1>
-    <h1>{{ user.profile.wallet}} </h1>
+    <h1>Balance : Rs {{ user.profile.wallet}} </h1>
+    <h1>Transaction history: </h1>
+    {% for query in queries %}
+        <h4>{{query.buyer}} bought {{query.item}} from {{query.seller}} for {{query.value}}</h4>
+    {% endfor %}
 {% endblock content %}

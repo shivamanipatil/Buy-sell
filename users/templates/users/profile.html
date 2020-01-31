@@ -9,7 +9,7 @@
     <h2>Your transaction history: </h1>
     <hr>
     {% for query in queries %}
-        <h4 class="query-items">{{query.buyer}} bought {{query.item}} from {{query.seller}} for {{query.value}}</h4>
+        <h4 class="query-items">{{query.buyer}} bought {{query.item}} from {{query.seller}} for Rs {{query.value}}</h4>
     {% endfor %}
     
 {% endblock content %}

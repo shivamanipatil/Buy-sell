@@ -1,4 +1,3 @@
-# IRIS_181IT144_Django
 
 ### Install required packages: 
 
